@@ -4,17 +4,25 @@
  */
 package rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.repository.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.repository.ZaposleniRepository;
 
 /**
  *
- * @author Sreja
+ * @author Korisnik
  */
-public class ZaposleniRepositoryImpl {
-    
+@Service
+public class ZaposleniImpl {
+     public ZaposleniImpl() {
+
+    }
     private ZaposleniRepository zaposleniRepository;
 
-    public ZaposleniRepositoryImpl(ZaposleniRepository zaposleniRepository) {
+    @Autowired
+    public ZaposleniImpl(ZaposleniRepository zaposleniRepository) {
         this.zaposleniRepository = zaposleniRepository;
-    }  
+    }
+    
+    
 }

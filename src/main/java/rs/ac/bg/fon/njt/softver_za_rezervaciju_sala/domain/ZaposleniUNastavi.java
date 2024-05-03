@@ -25,6 +25,7 @@ public class ZaposleniUNastavi extends Zaposleni{
     private String katedra;
 
     public ZaposleniUNastavi() {
+        System.out.println("konstruktor zaposleniUNastavi");
     }
 
     public ZaposleniUNastavi(String zvanje, String katedra, String ime, String prezime, String email, String titula) {
@@ -51,7 +52,7 @@ public class ZaposleniUNastavi extends Zaposleni{
 
     @Override
     public String toString() {
-        return super.toString()+"ZaposleniUNastavi{" + "zvanje=" + zvanje + ", katedra=" + katedra + '}';
+        return super.toString() + "zvanje=" + zvanje + ", katedra=" + katedra ;
     }
     
     

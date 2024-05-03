@@ -18,6 +18,8 @@ import jakarta.persistence.Table;
 public class ZaposleniVanNastave extends Zaposleni {
 
     public ZaposleniVanNastave() {
+                System.out.println("konstruktor zaposleniVanNastavi");
+
     }
 
     public ZaposleniVanNastave(String ime, String prezime, String email, String titula) {

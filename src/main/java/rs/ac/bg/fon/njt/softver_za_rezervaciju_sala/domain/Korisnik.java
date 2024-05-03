@@ -15,8 +15,8 @@ public class Korisnik {
     @Column(name="sifra")
     private String sifra;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "osoba_id")
+    @OneToOne(cascade ={ CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinColumn(name = "osoba_id",referencedColumnName = "id")
     private Osoba osoba;
 
     public Korisnik() {

@@ -13,50 +13,46 @@ import jakarta.persistence.*;
  * @author Stefan
  */
 @Entity
-@Table(name="rezervacija")
+@Table(name = "rezervacija")
 public class Rezervacija {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
     @Id
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="sala_id",referencedColumnName = "id")
+    @JoinColumn(name = "sala_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Sala sala;
-
 
     @Id
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="korisnik_id",referencedColumnName = "korisnik_id")
+    @JoinColumn(name = "korisnik_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Korisnik korisnik;
-    @Column(name="vreme_pocetka")
+    @Column(name = "vreme_pocetka")
     private Date vremePocetka;
 
-    @Column(name="vreme_zavrsetka")
+    @Column(name = "vreme_zavrsetka")
     private Date vremeZavrsetka;
 
-    @Column(name="status_rezervacije")
+    @Column(name = "status_rezervacije")
     private String statusRezervacije;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "svrha_id",referencedColumnName = "id")
+    @JoinColumn(name = "svrha_id", referencedColumnName = "id")
     private SvrhaRezervacije svrhaRezervacije;
-
-
-
 
     public Rezervacija() {
     }
 
-    public Rezervacija(Date vremePocetka, Date vremeZavrsetka, String statusRezervacije, Sala sala, Korisnik korisnik,SvrhaRezervacije svrhaRezervacije) {
+    public Rezervacija(Date vremePocetka, Date vremeZavrsetka, String statusRezervacije, Sala sala, Korisnik korisnik, SvrhaRezervacije svrhaRezervacije) {
         this.vremePocetka = vremePocetka;
         this.vremeZavrsetka = vremeZavrsetka;
         this.statusRezervacije = statusRezervacije;
         this.sala = sala;
         this.korisnik = korisnik;
-        this.svrhaRezervacije=svrhaRezervacije;
+        this.svrhaRezervacije = svrhaRezervacije;
     }
 
     public Date getVremePocetka() {
@@ -119,9 +115,5 @@ public class Rezervacija {
     public String toString() {
         return "Rezervacija{" + "vremePocetka=" + vremePocetka + ", vremeZavrsetka=" + vremeZavrsetka + ", statusRezervacije=" + statusRezervacije + ", sala=" + sala + ", korisnik=" + korisnik + '}';
     }
-    
-    
-    
-    
-    
+
 }

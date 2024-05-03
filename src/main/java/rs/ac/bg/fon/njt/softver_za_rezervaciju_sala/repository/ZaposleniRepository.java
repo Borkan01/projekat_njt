@@ -13,4 +13,6 @@ import rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.domain.Zaposleni;
  */
 public interface ZaposleniRepository extends JpaRepository<Zaposleni, Integer>{
     
+    
+   
 }
