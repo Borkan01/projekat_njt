@@ -3,7 +3,7 @@ package rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "id")
+@Table(name = "osoba")
 @DiscriminatorColumn(name = "tip_osobe")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Osoba {
@@ -12,18 +12,20 @@ public abstract class Osoba {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    protected int id;
 
     @Column(name = "ime")
-    private String ime;
+    protected String ime;
     @Column(name = "prezime")
-    private String prezime;
+    protected String prezime;
 
     @Column(name = "email")
-    private String email;
+    protected String email;
 
 
     public Osoba() {
+        System.out.println("konstruktor Osoba");
+
     }
 
     public Osoba(String ime, String prezime, String email) {
