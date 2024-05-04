@@ -4,8 +4,11 @@
  */
 package rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.repository.impl;
 
+import jakarta.transaction.Transactional;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.domain.Zaposleni;
 import rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.repository.ZaposleniRepository;
 
 /**
@@ -24,5 +27,23 @@ public class ZaposleniImpl {
         this.zaposleniRepository = zaposleniRepository;
     }
     
+    @Transactional
+    public List<Zaposleni> vratiSveZaposlene(){
+        return zaposleniRepository.vratiSveZaoposlene();
+    }
     
+     @Transactional
+    public Zaposleni vratiZaposlenogSaDatimEmailom(Zaposleni zaposleni){
+        return zaposleniRepository.vratiZaposlenogSaDatimEmail(zaposleni.getEmail());
+    }
+    
+    @Transactional
+    public void obrisiZaposlenog(Zaposleni zaposleni){
+        zaposleniRepository.delete(zaposleni);
+    }
+    
+    @Transactional
+    public void updateZaposleni(Zaposleni zaposleni){
+        zaposleniRepository.save(zaposleni);
+    }
 }
