@@ -27,6 +27,9 @@ public class SoftverZaRezervacijuSalaApplication {
             vratiKorisnikeZNorZNN(korisnikImpl);
             // dodajKorisnika(korisnikImpl);
             // azurirajKorisnika(korisnikImpl);
+              //vratiPotvrdjeneRezervacije(rezervacijaImpl);
+               //sacuvajRezervaciju(rezervacijaImpl);
+               //zauzetostSala(rezervacijaImpl);
         };
             
     }   

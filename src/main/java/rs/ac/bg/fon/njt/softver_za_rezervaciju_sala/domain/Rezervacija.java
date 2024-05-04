@@ -10,51 +10,63 @@ import jakarta.persistence.*;
 
 /**
  *
- * @author Stefan
+ * @author BaNbO01
  */
 @Entity
-@Table(name = "rezervacija")
+@Table(name="rezervacija")
 public class Rezervacija {
+    
+    @EmbeddedId
+    private RezervacijaID RezervacijaID;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-
-    @Id
+ 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "sala_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name="sala_id",referencedColumnName = "id",insertable = false,updatable = false)
     private Sala sala;
 
-    @Id
+
+    
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "korisnik_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name="korisnik_id",referencedColumnName = "id",insertable = false,updatable = false)
     private Korisnik korisnik;
-    @Column(name = "vreme_pocetka")
+    @Column(name="vreme_pocetka")
     private Date vremePocetka;
 
-    @Column(name = "vreme_zavrsetka")
+    @Column(name="vreme_zavrsetka")
     private Date vremeZavrsetka;
 
-    @Column(name = "status_rezervacije")
+    @Column(name="status_rezervacije")
     private String statusRezervacije;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "svrha_id", referencedColumnName = "id")
+    @JoinColumn(name = "svrha_id",referencedColumnName = "id")
     private SvrhaRezervacije svrhaRezervacije;
+
+
+
 
     public Rezervacija() {
     }
 
-    public Rezervacija(Date vremePocetka, Date vremeZavrsetka, String statusRezervacije, Sala sala, Korisnik korisnik, SvrhaRezervacije svrhaRezervacije) {
+    public Rezervacija(Date vremePocetka, Date vremeZavrsetka, String statusRezervacije, Sala sala, Korisnik korisnik,SvrhaRezervacije svrhaRezervacije) {
         this.vremePocetka = vremePocetka;
         this.vremeZavrsetka = vremeZavrsetka;
         this.statusRezervacije = statusRezervacije;
         this.sala = sala;
         this.korisnik = korisnik;
-        this.svrhaRezervacije = svrhaRezervacije;
+        this.svrhaRezervacije=svrhaRezervacije;
     }
 
+    public RezervacijaID getRezervacijaID() {
+        return RezervacijaID;
+    }
+
+    public void setRezervacijaID(RezervacijaID RezervacijaID) {
+        this.RezervacijaID = RezervacijaID;
+    }
+
+    
+    
     public Date getVremePocetka() {
         return vremePocetka;
     }
@@ -95,14 +107,6 @@ public class Rezervacija {
         this.korisnik = korisnik;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public SvrhaRezervacije getSvrhaRezervacije() {
         return svrhaRezervacije;
     }
@@ -115,5 +119,9 @@ public class Rezervacija {
     public String toString() {
         return "Rezervacija{" + "vremePocetka=" + vremePocetka + ", vremeZavrsetka=" + vremeZavrsetka + ", statusRezervacije=" + statusRezervacije + ", sala=" + sala + ", korisnik=" + korisnik + '}';
     }
-
+    
+    
+    
+    
+    
 }
