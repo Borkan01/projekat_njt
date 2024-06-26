@@ -53,4 +53,9 @@ public class SalaImpl {
         salaRepository.save(sala);
     }
     
+    
+    @Transactional
+    public Sala findSalaById(Long id){
+        return salaRepository.findSalaById(id);
+    }
 }

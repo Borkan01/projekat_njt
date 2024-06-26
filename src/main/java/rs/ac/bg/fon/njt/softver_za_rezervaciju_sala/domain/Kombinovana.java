@@ -19,12 +19,12 @@ import jakarta.persistence.Table;
 public class Kombinovana extends Sala {
     
     @Column(name="broj_racunara")
-    private int brojRacunara;
+    private Integer brojRacunara;
 
     public Kombinovana() {
     }
 
-    public Kombinovana(int brojRacunara, String naziv, String napomena, int brojMesta,boolean status) {
+    public Kombinovana(int brojRacunara, String naziv, String napomena, Integer brojMesta,boolean status) {
         super(naziv, napomena, brojMesta,status);
         this.brojRacunara = brojRacunara;
     }

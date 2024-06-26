@@ -57,9 +57,9 @@ public class RezervacijaID {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.id;
-        hash = 29 * hash + this.sala_id;
-        hash = 29 * hash + this.korisnik_id;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + this.sala_id;
+        hash = 59 * hash + this.korisnik_id;
         return hash;
     }
 
@@ -82,6 +82,13 @@ public class RezervacijaID {
             return false;
         }
         return this.korisnik_id == other.korisnik_id;
+    }
+
+  
+
+    @Override
+    public String toString() {
+        return "RezervacijaID{" + "id=" + id + ", sala_id=" + sala_id + ", korisnik_id=" + korisnik_id + '}';
     }
     
     

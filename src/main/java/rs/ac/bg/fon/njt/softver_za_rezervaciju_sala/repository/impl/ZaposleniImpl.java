@@ -33,8 +33,8 @@ public class ZaposleniImpl {
     }
     
      @Transactional
-    public Zaposleni vratiZaposlenogSaDatimEmailom(Zaposleni zaposleni){
-        return zaposleniRepository.vratiZaposlenogSaDatimEmail(zaposleni.getEmail());
+    public Zaposleni vratiZaposlenogSaDatimEmailom(String email){
+        return zaposleniRepository.vratiZaposlenogSaDatimEmail(email);
     }
     
     @Transactional

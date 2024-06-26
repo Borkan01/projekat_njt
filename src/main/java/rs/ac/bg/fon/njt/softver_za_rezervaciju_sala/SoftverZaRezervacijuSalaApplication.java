@@ -18,21 +18,21 @@ public class SoftverZaRezervacijuSalaApplication {
 
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(KorisnikImpl korisnikImpl) {
-
-        return runner -> {
-
-            //vratiKorisnika(korisnikImpl);
-            vratiKorisnikeZNorZNN(korisnikImpl);
-            // dodajKorisnika(korisnikImpl);
-            // azurirajKorisnika(korisnikImpl);
-              //vratiPotvrdjeneRezervacije(rezervacijaImpl);
-               //sacuvajRezervaciju(rezervacijaImpl);
-               //zauzetostSala(rezervacijaImpl);
-        };
-            
-    }   
+//    @Bean
+//    public CommandLineRunner commandLineRunner(KorisnikImpl korisnikImpl) {
+//
+//        return runner -> {
+//
+//            //vratiKorisnika(korisnikImpl);
+//            vratiKorisnikeZNorZNN(korisnikImpl);
+//            // dodajKorisnika(korisnikImpl);
+//            // azurirajKorisnika(korisnikImpl);
+//              //vratiPotvrdjeneRezervacije(rezervacijaImpl);
+//               //sacuvajRezervaciju(rezervacijaImpl);
+//               //zauzetostSala(rezervacijaImpl);
+//        };
+//            
+//    }   
             
 
     private void vratiKorisnika(KorisnikImpl korisnikImpl) {

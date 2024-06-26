@@ -29,6 +29,12 @@ public interface KorisnikRepository extends JpaRepository<Korisnik, Integer>{
     @Query("select k from Korisnik k where k.osoba.id=:id")
     public Korisnik vratiKorisnikaPoOsobaId(@Param("id")int id);
     
-
+    
+    @Query("select k from Korisnik k where osoba.email=:email")
+    public Korisnik vratiKorisnikaPoUsername(@Param("email") String username);
+    
+    
+    @Query("SELECT k FROM Korisnik k WHERE k.id=:id")
+    public Korisnik vratiKorisnikaPoId(@Param("id") Integer id);
     
 }

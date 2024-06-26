@@ -19,12 +19,12 @@ import jakarta.persistence.Table;
 public class RCSala extends Sala{
     
     @Column(name="broj_racunara")
-    private int brojRacunara;
+    private Integer brojRacunara;
 
     public RCSala() {
     }
 
-    public RCSala(int brojRacunara, String naziv, String napomena, int brojMesta,boolean status) {
+    public RCSala(int brojRacunara, String naziv, String napomena, Integer brojMesta,boolean status) {
         super(naziv, napomena, brojMesta,status);
         this.brojRacunara = brojRacunara;
     }

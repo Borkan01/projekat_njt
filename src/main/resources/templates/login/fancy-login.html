@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+    <title>Login Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <style>
+        body {
+            background-color: #e6e6e6; /* Tamno plava boja */
+            color: #ffffff; /* Bela boja teksta za bolju vidljivost na tamnoj pozadini */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding-top: 50px;
+            background-color: #091038; /* Tamno plava boja kontejnera */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-container {
+            background-color: #111d63; /* Tamno plava boja forme */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff; /* Bela boja naslova */
+        }
+
+        label {
+            font-weight: bold;
+            color: #ffffff; /* Bela boja za labelu */
+        }
+
+        .btn-primary {
+            width: 100%;
+            background-color: #688fd9; /* Nijansa plave za dugme */
+            color: #ffffff; /* Bela boja teksta na dugmetu */
+            border-color: #688fd9; /* Boja ivice dugmeta */
+        }
+
+        .btn-primary:hover {
+            background-color: #091038; /* Boja pozadine na hover dugmeta */
+        }
+
+        .form-control {
+            background-color: #ffffff; /* Bela boja polja za unos */
+            color: #688fd9; /* Plava boja teksta u polju za unos */
+        }
+
+        .alert {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Dodato za odvajanje elemenata */
+        }
+
+        .logo-container {
+            text-align: center; /* Centriranje logo slike */
+            margin-bottom: 20px;
+        }
+
+        .logo-img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-link a {
+            color: #688fd9;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://oas.fon.bg.ac.rs/wp-content/uploads/2023/04/FON-Logo-Tamni.png" alt="Logo" class="logo-img">
+        </div>
+        <div class="form-container">
+            <h1>Sign In</h1>
+            <form action="#" th:action="@{/authenticateTheUser}" method="POST" class="form-horizontal">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Pogresno korisnicko ime ili lozinka
+                    </div>
+                </div>
+
+                
+                    <div th:if="${param.logout}">
+                    <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                        Uspesno ste se izlogovali
+                    </div>
+                </div>
+                
+         
+
+                <!-- User name -->
+                <div class="form-group">
+                    <label for="username">Korisničko ime</label>
+                    <input type="text" id="username" name="username" placeholder="username" class="form-control" />
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Lozinka</label>
+                    <input type="password" id="password" name="password" placeholder="password" class="form-control" />
+                </div>
+
+                <!-- Login/Submit Button -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="register-link">
+    <p>Nemate nalog? <a th:href="@{/register/form(allow='true')}">Registrujte se lako ovde</a>.</p>
+</div>
+    </div>
+</body>
+</html>

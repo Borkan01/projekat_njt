@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sale po Danu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+
+
+
+            * {
+                margin: 0;
+                padding: 0;
+                user-select: none;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
+            .btn1 {
+                position: absolute;
+                top: 15px;
+                left: 45px;
+                height: 45px;
+                width: 45px;
+                text-align: center;
+                background: #1b1b1b;
+                border-radius: 3px;
+                cursor: pointer;
+                transition: left 0.4s ease;
+                z-index: 20;
+            }
+            .btn1.click {
+                left: 315px;
+            }
+            .btn1 span {
+                color: white;
+                font-size: 28px;
+                line-height: 45px;
+            }
+            .sidebar {
+                position: fixed;
+                width: 310px;
+                height: 100%;
+                left: -310px;
+                background: #1b1b1b;
+                transition: left 0.4s ease;
+                z-index: 20;
+
+
+            }
+            .sidebar.show {
+                left: 0px;
+            }
+            .sidebar .text {
+                color: white;
+                font-size: 25px;
+                font-weight: 600;
+                line-height: 65px;
+                text-align: center;
+                background: #1e1e1e;
+                letter-spacing: 1px;
+            }
+            nav ul {
+                background: #1b1b1b;
+                height: 100%;
+                width: 100%;
+                list-style: none;
+            }
+            nav ul li {
+                line-height: 60px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            nav ul li:last-child {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            nav ul li a {
+                position: relative;
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                padding-left: 5px;
+                font-weight: 500;
+                display: block;
+                width: 100%;
+                border-left: 3px solid transparent;
+            }
+            nav ul li.active a {
+                color: cyan;
+                background: #1e1e1e;
+                border-left-color: cyan;
+            }
+            nav ul li a:hover {
+                background: #1e1e1e;
+            }
+            nav ul ul {
+                position: static;
+                display: none;
+            }
+            nav ul .register-show.show {
+                display: block;
+            }
+
+            nav ul ul li {
+                line-height: 42px;
+                border-top: none;
+            }
+            nav ul ul li a {
+                font-size: 17px;
+                color: #e6e6e6;
+                padding-left: 5px;
+            }
+            nav ul li.active ul li a {
+                color: #e6e6e6;
+                background: #1b1b1b;
+                border-left-color: transparent;
+            }
+            nav ul ul li a:hover {
+                color: cyan !important;
+                background: #1e1e1e !important;
+            }
+            nav ul li a span {
+                position: absolute;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                font-size: 22px;
+                transition: transform 0.4s;
+            }
+
+            body {
+                background-color: #182156f7; /* Tamno plava boja pozadine */
+                color: #ffffff; /* Bela boja teksta */
+                font-family: Arial, sans-serif;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding-top: 50px;
+                padding-bottom: 20px;
+
+            }
+
+            h3 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #e3e3e3; /* Svetlija plava boja za naslov */
+            }
+
+            .btn-primary {
+                background-color: #4169E1; /* Plava boja za dugme */
+                border-color: #4169E1; /* Boja ivice dugmeta */
+            }
+
+            .btn-primary:hover {
+                background-color: #1E90FF; /* Boja pozadine na hover dugmeta */
+            }
+
+            .table {
+                color: #ffffff; /* Bela boja teksta u tabeli */
+
+                table-layout: fixed;
+                width: 200%
+
+
+            }
+
+            .table th,
+            .table td {
+                border-color: #ffffff; /* Bela boja ivice celija */
+                overflow: auto;
+            }
+
+            .table-bordered th,
+            .table-bordered td {
+                border-width: 2px;
+            }
+
+            .table-striped tbody tr:nth-of-type(odd) {
+                background-color: #191970; /* Tamno plava boja svakog drugog reda tabele */
+            }
+
+            .table-striped tbody tr:nth-of-type(even) {
+                background-color: #091038; /* Tamno plava boja svakog drugog reda tabele */
+            }
+
+            .logo-container {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .logo-img {
+                max-width: 200px;
+                height: auto;
+            }
+
+            .table th {
+                background-color: #4169E1; /* Plava boja zaglavlja tabele */
+                position: sticky;
+                top: 0;
+                z-index: 999;
+            }
+
+            .filter-container {
+                margin-bottom: 10px;
+            }
+
+            .filter-container label {
+                color: #ffffff; /* Bela boja teksta za labele */
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .filter-container input[type="text"] {
+                background-color: #4169E1; /* Plava boja polja */
+                color: #ffffff; /* Bela boja teksta u polju */
+                border: none;
+                border-radius: 5px;
+                padding: 8px;
+                width: 100%;
+                box-sizing: border-box;
+                margin-top: 5px;
+            }
+
+            .filter-container input[type="text"]::placeholder {
+                color: #ffffff; /* Bela boja teksta za placeholder */
+            }
+
+            .zauzeto {
+                background-color: red;
+            }
+
+            .slobodno {
+                background-color: green;
+            }
+
+            .legend-container {
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+            }
+
+            .legend-color {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+
+            .legend-label {
+                color: #ffffff;
+            }
+
+            .table.table-bordered.table-striped tbody tr td{
+                color: #fff;
+            }
+
+            .table.table-bordered.table-striped tbody tr td:nth-child(1){
+                color: #000;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div class="btn1">
+            <span>
+                <i class="fa fa-bars" style="font-size: 24px"></i>
+            </span>
+        </div>
+        <nav class="sidebar">
+            <div class="text">Meni</div>
+            <ul>
+                <li class="user active"><a href="/main">Pocetna stranica</a></li>
+                <li>
+                    <a href="#" class="register-btn"
+                       >Rezervacija
+                        <span class="first"></span>
+                    </a>
+                    <ul class="register-show">
+                        <li><a href="http://localhost:8080/reservation/myReservations">Prikazi moje rezervacije</a></li>
+                        <li sec:authorize="hasRole('ADMIN')"><a href="http://localhost:8080/reservation/allReservations">Prikazi sve rezervacije</a></li>
+                        <li><a href="http://localhost:8080/reservation/createReservation">Rezervisi salu</a></li>
+                        <li><a href="http://localhost:8080/reservation/chooseDate">Prikazi zauzetost sala po danu</a></li>
+                    </ul>
+                </li>
+
+
+                <li>
+
+                    <a href="#" id="a_log">Izloguj se</a>
+                    <form id="postForm" action="#" th:action="@{/logout}" method="POST" style="display:none;">
+                        <input type="submit" value="logout"/>
+                    </form>
+
+                </li>
+
+            </ul>
+        </nav>
+
+
+        <div class="container">
+
+
+
+
+            <h3>Sale po Danu</h3>
+
+            <div class="logo-container">
+                <img src="https://oas.fon.bg.ac.rs/wp-content/uploads/2023/04/FON-Logo-Tamni.png" alt="Logo" class="logo-img">
+            </div>
+
+            <div class="container">
+                <div class="filter-container">
+                    <label for="filterBySale">Filtriraj po sali:</label>
+                    <input type="text" id="filterBySale" oninput="filterTable()" placeholder="Filtriraj po imenu sale...">
+                </div>
+
+                <br>
+                <a th:href="@{/reservation/chooseDate}" class="btn btn-primary btn-sm mb-3">
+                    Izaberite Drugi Datum
+                </a>
+
+                <hr>
+
+                <div>
+                    <table id="salesTable" class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Sala</th>
+                                <th>8h</th>
+                                <th>9h</th>
+                                <th>10h</th>
+                                <th>11h</th>
+                                <th>12h</th>
+                                <th>13h</th>
+                                <th>14h</th>
+                                <th>15h</th>
+                                <th>16h</th>
+                                <th>17h</th>
+                                <th>18h</th>
+                                <th>19h</th>
+                                <th>20h</th>
+                                <th>21h</th>
+                                <th>22h</th>
+                                <th>23h</th>
+                                <th>24h</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="salePoDanu : ${rezervacije}">
+                                <td th:text="${salePoDanu.sala.naziv}">Sala 1</td>
+                                <td th:each="zauzetost, iterStat : ${salePoDanu.zauzetost}"
+                                    th:classappend="${zauzetost} ? 'zauzeto' : 'slobodno'"
+                                    th:style="${zauzetost} ? 'background-color: red;' : 'background-color: green;'">
+                                    <div th:if="${zauzetost}">
+                                        <span th:text="${salePoDanu.svrhaRezervacije[iterStat.index].organizator}"></span><br>
+                                        <span th:text="${salePoDanu.svrhaRezervacije[iterStat.index].svrha}"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="legend-container">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: green;"></div>
+                        <div class="legend-label">Slobodno</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: red;"></div>
+                        <div class="legend-label">Zauzeto</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+
+                document.getElementById('a_log').addEventListener('click', function (event) {
+                    event.preventDefault(); // Sprečava default ponašanje linka
+                    document.getElementById('postForm').submit(); // Podnosi formu
+                });
+
+
+                function filterTable() {
+                    var inputSale, filterSale, table, tr, td, i, txtValueSale;
+                    inputSale = document.getElementById("filterBySale");
+                    filterSale = inputSale.value.toUpperCase();
+                    table = document.getElementById("salesTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 1; i < tr.length; i++) { // Start from 1 to skip header row
+                        tdSale = tr[i].getElementsByTagName("td")[0];
+                        if (tdSale) {
+                            txtValueSale = tdSale.textContent || tdSale.innerText;
+                            var saleMatch = txtValueSale.toUpperCase().indexOf(filterSale) > -1 || filterSale === '';
+                            if (saleMatch) {
+                                tr[i].style.display = ""; // Show row if sale name matches filter
+                            } else {
+                                tr[i].style.display = "none"; // Hide row if sale name does not match filter
+                            }
+                        }
+                    }
+                }
+
+                function adjustCellDimensions() {
+                    const table = document.getElementById("salesTable");
+                    if (table) {
+                        let maxWidth = 0;
+                        let maxHeight = 0;
+
+                        // Calculate the maximum width and height of cells in the table
+                        const cells = table.getElementsByTagName("td");
+                        for (let i = 0; i < cells.length; i++) {
+                            const cellWidth = cells[i].offsetWidth;
+                            const cellHeight = cells[i].offsetHeight;
+                            maxWidth = Math.max(maxWidth, cellWidth);
+                            maxHeight = Math.max(maxHeight, cellHeight);
+                        }
+
+                        // Set width and height for all cells
+                        for (let i = 0; i < cells.length; i++) {
+                            cells[i].style.width = maxWidth + "px";
+                            cells[i].style.height = maxHeight + "px";
+                        }
+                    }
+                }
+
+
+
+                window.addEventListener("load", adjustCellDimensions);
+
+
+
+
+                function toggleClasses(elements, className) {
+                    elements.forEach(function (element) {
+                        element.classList.toggle(className);
+                    });
+                }
+
+                function removeClasses(elements, ...classNames) {
+                    elements.forEach(function (element) {
+                        classNames.forEach(function (className) {
+                            element.classList.remove(className);
+                        });
+                    });
+                }
+
+                document.querySelectorAll(".btn1").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        this.classList.toggle("click");
+                        document.querySelector(".sidebar").classList.toggle("show");
+                    });
+                });
+
+                document.querySelectorAll(".register-btn").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        toggleClasses(document.querySelectorAll("nav ul .register-show"), "show");
+
+                    });
+                });
+
+
+
+                document.querySelectorAll(".user").forEach(function (korisnik) {
+                    korisnik.addEventListener("click", function () {
+                        removeClasses(
+                                document.querySelectorAll("nav ul .register-show"),
+                                "show"
+                                );
+                    });
+                });
+
+                document.querySelectorAll("nav ul li").forEach(function (item) {
+                    item.addEventListener("click", function () {
+                        this.classList.add("active");
+                        Array.from(this.parentNode.children).forEach(function (sibling) {
+                            if (sibling !== item) {
+                                sibling.classList.remove("active");
+                            }
+                        });
+                    });
+                });
+
+
+
+
+
+
+
+            </script>
+
+        </div>
+
+    </body>
+</html>

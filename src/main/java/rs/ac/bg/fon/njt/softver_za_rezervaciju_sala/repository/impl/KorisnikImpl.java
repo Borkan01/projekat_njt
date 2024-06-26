@@ -69,5 +69,17 @@ public class KorisnikImpl {
         korisnikRepository.delete(korisnik);
 
     }
+    
+    public Korisnik vratiKorisnikaPoOsobaId(int id){
+        return korisnikRepository.vratiKorisnikaPoOsobaId(id);
+    }
+    
+    public Korisnik vratiKorisnikaSaZadatimUsername(String email){
+        return korisnikRepository.vratiKorisnikaPoUsername(email);
+    }
 
+    
+    public Korisnik vratiKorisnikaPoId(Integer id){
+        return korisnikRepository.vratiKorisnikaPoId(id);
+    }
 }

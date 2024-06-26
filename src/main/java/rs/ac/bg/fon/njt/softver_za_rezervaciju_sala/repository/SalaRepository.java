@@ -27,4 +27,7 @@ public interface SalaRepository extends JpaRepository<Sala, Integer>{
     
     @Query("SELECT s FROM Sala s WHERE s.status=TRUE AND TYPE(s) IN (:RCSala, :Kombinovana)")
     public List<Sala> vratiSveSaleKojeImajuRacunare(@Param("RCSala") Class<RCSala> rcSalam,@Param("Kombinovana") Class<Kombinovana> kombinovana);
+    
+    @Query("SELECT s FROM Sala s WHERE s.id=:id")
+    public Sala findSalaById(@Param("id") Long id);
 }

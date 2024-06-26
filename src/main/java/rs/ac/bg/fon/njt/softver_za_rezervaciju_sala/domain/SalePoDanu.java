@@ -6,6 +6,7 @@ package rs.ac.bg.fon.njt.softver_za_rezervaciju_sala.domain;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -15,14 +16,24 @@ import java.util.Objects;
 public class SalePoDanu {
     private Date datum;
     private Sala sala;
-    private int sat;
-    private boolean zauzetost;
+    private List<Integer> sati;
+    private List<Boolean> zauzetost;
+    private List<SvrhaRezervacije> svrhaRezervacije;
 
-    public SalePoDanu(Date datum, Sala sala, int sat, boolean zauzetost) {
+    public SalePoDanu(Date datum, Sala sala, List<Integer> sati, List<Boolean> zauzetost,List<SvrhaRezervacije> svrhaRezervacije) {
         this.datum = datum;
         this.sala = sala;
-        this.sat = sat;
+        this.sati = sati;
         this.zauzetost = zauzetost;
+        this.svrhaRezervacije = svrhaRezervacije;
+    }
+
+    public List<SvrhaRezervacije> getSvrhaRezervacije() {
+        return svrhaRezervacije;
+    }
+
+    public void setSvrhaRezervacije(List<SvrhaRezervacije> svrhaRezervacije) {
+        this.svrhaRezervacije = svrhaRezervacije;
     }
 
    
@@ -48,36 +59,29 @@ public class SalePoDanu {
     }
 
     
-    public Sala getSalaId() {
-        return sala;
+   
+
+    public List<Integer> getSati() {
+        return sati;
     }
 
-    public void setSalaId(Sala sala) {
-        this.sala = sala;
+    public void setSati(List<Integer> sati) {
+        this.sati = sati;
     }
 
-    public int getSat() {
-        return sat;
-    }
-
-    public void setSat(int sat) {
-        this.sat = sat;
-    }
-
-    public boolean isZauzetost() {
+    public List<Boolean> getZauzetost() {
         return zauzetost;
     }
 
-    public void setZauzetost(boolean zauzetost) {
+    public void setZauzetost(List<Boolean> zauzetost) {
         this.zauzetost = zauzetost;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + Objects.hashCode(this.datum);
-        hash = 83 * hash + Objects.hashCode(this.sala);
-        hash = 83 * hash + this.sat;
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.datum);
+        hash = 73 * hash + Objects.hashCode(this.sala);
         return hash;
     }
 
@@ -93,9 +97,6 @@ public class SalePoDanu {
             return false;
         }
         final SalePoDanu other = (SalePoDanu) obj;
-        if (this.sat != other.sat) {
-            return false;
-        }
         if (!Objects.equals(this.datum, other.datum)) {
             return false;
         }
@@ -104,10 +105,14 @@ public class SalePoDanu {
 
     @Override
     public String toString() {
-        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-        String datumKaoString = format.format(datum);
-        return "SalePoDanu{" + "datum=" + datumKaoString + ",sat=" + sat + " sala=" + sala + ", , zauzetost=" + zauzetost + '}';
+        return "SalePoDanu{" + "datum=" + datum + ", sala=" + sala + '}';
     }
+
+    
+
+   
+
+
 
     
     
